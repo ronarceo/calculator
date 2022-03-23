@@ -27,6 +27,9 @@ clearBtn.addEventListener('click', clearScreen);
 function clearScreen() {
     currentOperationScreen.textContent = '0';
     lastOperationScreen.textContent = '';
+    firstNumber = '';
+    secondNumber = '';
+    chosenOperator = null;
 }
 
 deleteBtn.addEventListener('click', deleteNumber);
