@@ -5,6 +5,7 @@ const deleteBtn = document.querySelector('#deleteBtn');
 const pointBtn = document.querySelector('#pointBtn');
 const operatorBtns = document.querySelectorAll('[data-operator]');
 const lastOperationScreen = document.querySelector('#lastOperationScreen');
+const equalsBtn = document.querySelector('#equalsBtn');
 
 let firstNumber = '';
 let secondNumber = '';
@@ -49,8 +50,42 @@ operatorBtns.forEach(operatorBtn => {
 })
 
 function updateOperator(operator) {
-    firstNumber = currentOperationScreen.textContent;
+    firstNumber = Number(currentOperationScreen.textContent);
     chosenOperator = operator;
     lastOperationScreen.textContent = `${firstNumber} ${chosenOperator}`;
     currentOperationScreen.textContent = '0';
+}
+
+equalsBtn.addEventListener('click', calculate);
+
+function calculate() {
+    if (chosenOperator === null) return;
+    secondNumber = Number(currentOperationScreen.textContent);
+    let result = '';
+    switch (chosenOperator) {
+        case '+':
+            result = firstNumber + secondNumber;
+            lastOperationScreen.textContent = `${firstNumber} ${chosenOperator} ${secondNumber} = ${result}`;
+            currentOperationScreen.textContent = result;
+            break;
+        case '−':
+            result = firstNumber - secondNumber;
+            lastOperationScreen.textContent = `${firstNumber} ${chosenOperator} ${secondNumber} = ${result}`;
+            currentOperationScreen.textContent = result;
+            break;
+        case '×':
+            result = firstNumber * secondNumber;
+            lastOperationScreen.textContent = `${firstNumber} ${chosenOperator} ${secondNumber} = ${result}`;
+            currentOperationScreen.textContent = result;
+            break;
+        case '÷':
+            if (secondNumber === 0) {
+                alert('You cannot divide by zero!');
+                break;
+            }
+            result = firstNumber / secondNumber;
+            lastOperationScreen.textContent = `${firstNumber} ${chosenOperator} ${secondNumber} = ${result}`;
+            currentOperationScreen.textContent = result;
+            break;
+    }
 }
