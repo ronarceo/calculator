@@ -3,6 +3,12 @@ const currentOperationScreen = document.querySelector('#currentOperationScreen')
 const clearBtn = document.querySelector('#clearBtn');
 const deleteBtn = document.querySelector('#deleteBtn');
 const pointBtn = document.querySelector('#pointBtn');
+const operatorBtns = document.querySelectorAll('[data-operator]');
+const lastOperationScreen = document.querySelector('#lastOperationScreen');
+
+let firstNumber = '';
+let secondNumber = '';
+let chosenOperator = null;
 
 numberBtns.forEach(numberBtn => {
     numberBtn.addEventListener('click', () => updateNumber(numberBtn.textContent));
@@ -19,6 +25,7 @@ clearBtn.addEventListener('click', clearScreen);
 
 function clearScreen() {
     currentOperationScreen.textContent = '0';
+    lastOperationScreen.textContent = '';
 }
 
 deleteBtn.addEventListener('click', deleteNumber);
@@ -35,4 +42,15 @@ function decimal() {
     }
     if (currentOperationScreen.textContent.includes('.')) return;
     currentOperationScreen.textContent += '.';
+}
+
+operatorBtns.forEach(operatorBtn => {
+    operatorBtn.addEventListener('click', () => updateOperator(operatorBtn.textContent));
+})
+
+function updateOperator(operator) {
+    firstNumber = currentOperationScreen.textContent;
+    chosenOperator = operator;
+    lastOperationScreen.textContent = `${firstNumber} ${chosenOperator}`;
+    currentOperationScreen.textContent = '0';
 }
