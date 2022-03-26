@@ -53,6 +53,7 @@ operatorBtns.forEach(operatorBtn => {
 })
 
 function updateOperator(operator) {
+    if (chosenOperator !== null) calculate();
     firstNumber = Number(currentOperationScreen.textContent);
     chosenOperator = operator;
     lastOperationScreen.textContent = `${firstNumber} ${chosenOperator}`;
@@ -83,6 +84,7 @@ function calculate() {
             result = firstNumber / secondNumber;
             break;
     }
+    result = Math.round(result*1000)/1000;
     lastOperationScreen.textContent = `${firstNumber} ${chosenOperator} ${secondNumber} = ${result}`;
     currentOperationScreen.textContent = result;
 }
