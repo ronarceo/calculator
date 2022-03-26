@@ -68,18 +68,12 @@ function calculate() {
     switch (chosenOperator) {
         case '+':
             result = firstNumber + secondNumber;
-            lastOperationScreen.textContent = `${firstNumber} ${chosenOperator} ${secondNumber} = ${result}`;
-            currentOperationScreen.textContent = result;
             break;
         case '−':
             result = firstNumber - secondNumber;
-            lastOperationScreen.textContent = `${firstNumber} ${chosenOperator} ${secondNumber} = ${result}`;
-            currentOperationScreen.textContent = result;
             break;
         case '×':
             result = firstNumber * secondNumber;
-            lastOperationScreen.textContent = `${firstNumber} ${chosenOperator} ${secondNumber} = ${result}`;
-            currentOperationScreen.textContent = result;
             break;
         case '÷':
             if (secondNumber === 0) {
@@ -87,8 +81,8 @@ function calculate() {
                 break;
             }
             result = firstNumber / secondNumber;
-            lastOperationScreen.textContent = `${firstNumber} ${chosenOperator} ${secondNumber} = ${result}`;
-            currentOperationScreen.textContent = result;
             break;
     }
+    lastOperationScreen.textContent = `${firstNumber} ${chosenOperator} ${secondNumber} = ${result}`;
+    currentOperationScreen.textContent = result;
 }
